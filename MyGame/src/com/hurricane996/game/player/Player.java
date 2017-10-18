@@ -46,10 +46,10 @@ public class Player implements IRenderable {
     }
 
     private void check(int x, int y, int dx, int dy) {
-        if ((level.getTileAt(x + dx, y + dy) == Tile.FLOOR) || level.getTileAt(x + dx, y + dy) == Tile.START) {
+        if ((level.getTileAt(x + dx, y + dy) == Tile.FLOOR) || level.getTileAt(x + dx, y + dy) == Tile.START || level.getTileAt(x+dx,y+dy) == Tile.DOOR_OPEN) {
             this.x += dx;
             this.y += dy;
-        } else if (level.getTileAt(x + dx, y + dy) == Tile.WALL) {
+        } else if (level.getTileAt(x + dx, y + dy) == Tile.WALL || level.getTileAt(x+dx,y+dy) == Tile.DOOR_CLOSED) {
             return;
         } else if (level.getTileAt(x + dx, y + dy) == Tile.DEATH) {
             level.respawn(this);
@@ -61,6 +61,10 @@ public class Player implements IRenderable {
             this.x += dx;
             this.y += dy;
             game.nextLevel();
-        };
+        } else if (level.getTileAt(x + dx, y + dy) == Tile.LEVER) {
+            this.x += dx;
+            this.y += dy;
+            level.toggleDoor();
+        }
     }
 }

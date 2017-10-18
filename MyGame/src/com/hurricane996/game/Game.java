@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 
 import java.awt.*;
 
-import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
 public class Game extends Canvas implements Runnable {
