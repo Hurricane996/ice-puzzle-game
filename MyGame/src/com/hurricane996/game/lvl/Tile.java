@@ -6,15 +6,21 @@ import com.hurricane996.game.gfx.Screen;
 import javafx.scene.paint.Color;
 
 public class Tile implements IRenderable {
-    public static final Tile   WALL        = new SolidColorTile(0xFF494949);
-    public static final Tile   FLOOR       = new SolidColorTile(0xFF848484);
-    public static final Tile   ICE         = new SolidColorTile(0xFFEFFFFF);
-    public static final Tile   DEATH       = new SolidColorTile(0xFFFF6000);
-    public static final Tile   START       = new SolidColorTile(0xFF848484);
-    public static final Tile   FINISH      = new SolidColorTile(0xFF00FF00);
-    public static final Tile   DOOR_CLOSED = new SolidColorTile(0xFF603507);
-    public static final Tile   DOOR_OPEN   = new SolidColorTile(0xFF91500B);
-    public static final Tile   LEVER       = new SolidColorTile(0xFF13579B);
+    public static final Tile   WALL        = new Tile("/wall.png");
+    public static final Tile   FLOOR       = new Tile("/floor.png");
+    public static final Tile   ICE         = new Tile("/ice.png");
+    public static final Tile   DEATH       = new Tile("/death.png");
+    public static final Tile   START       = new Tile("/start.png");
+    public static final Tile   FINISH      = new Tile("/finish.png");
+    public static final Tile   DOOR_CLOSED = new Tile("/door_closed.png");
+    public static final Tile   DOOR_OPEN   = new Tile("/door_open.png");
+    public static final Tile   LEVER       = new Tile("/lever.png");
+
+    public class SolidColorTile extends Tile{
+        public SolidColorTile( int color) {
+            this.bitmap.clear(color);
+        }
+    }
 
     public static final Tile[] TILES = {
             WALL,
@@ -35,6 +41,7 @@ public class Tile implements IRenderable {
     public Tile(){
         this.bitmap = new Bitmap(TILE_WIDTH,TILE_HEIGHT);
     }
+    public Tile(String path){this.bitmap = Bitmap.getBitmapFromFile(path);}
 
     @Override
     public void render(Screen screen, int x, int y) {

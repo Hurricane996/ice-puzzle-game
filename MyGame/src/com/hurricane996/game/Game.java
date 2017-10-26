@@ -27,9 +27,9 @@ public class Game extends Canvas implements Runnable {
     public Game(){
 
         screen  = new Screen(WIDTH,HEIGHT);
-        player  = new Player(1,1,"/player_temp_sprite.png",this);
+        player  = new Player(1,1,"/player.png",this);
         setLevel();
-        handler = new InputHandler();
+        handler = new InputHandler(player);
         addKeyListener(handler);
 
     }
